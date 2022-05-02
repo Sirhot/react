@@ -28,38 +28,27 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 // const Header = function () {
 //     return <h1>Hello React</h1>
 // }
-//Class Component
-var Header = /*#__PURE__*/function (_React$Component) {
-  _inherits(Header, _React$Component);
-
-  var _super = _createSuper(Header);
-
-  function Header() {
-    _classCallCheck(this, Header);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(Header, [{
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/React.createElement("h1", null, this.props.title);
-    }
-  }]);
-
-  return Header;
-}(React.Component); //props class
+// //Class Component
+// class Header extends React.Component {
+//     render() {
+//         return <h1>{this.props.title}</h1>
+//     }
+// }
+//stateless es6 function component
+var Header = function Header(props) {
+  return /*#__PURE__*/React.createElement("h1", null, props.title);
+}; //props class
 
 
-var Desc = /*#__PURE__*/function (_React$Component2) {
-  _inherits(Desc, _React$Component2);
+var Desc = /*#__PURE__*/function (_React$Component) {
+  _inherits(Desc, _React$Component);
 
-  var _super2 = _createSuper(Desc);
+  var _super = _createSuper(Desc);
 
   function Desc() {
     _classCallCheck(this, Desc);
 
-    return _super2.apply(this, arguments);
+    return _super.apply(this, arguments);
   }
 
   _createClass(Desc, [{
@@ -76,86 +65,76 @@ var Desc = /*#__PURE__*/function (_React$Component2) {
 // }
 
 
-var ToDoListItems = /*#__PURE__*/function (_React$Component3) {
-  _inherits(ToDoListItems, _React$Component3);
-
-  var _super3 = _createSuper(ToDoListItems);
-
-  function ToDoListItems(props) {
-    var _this;
-
-    _classCallCheck(this, ToDoListItems);
-
-    _this = _super3.call(this, props);
-    _this.deleteItem = _this.deleteItem.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(ToDoListItems, [{
-    key: "deleteItem",
-    value: function deleteItem() {
-      this.props.deleteItem(this.props.item);
+var ToDoListItems = function ToDoListItems(props) {
+  return /*#__PURE__*/React.createElement("li", null, props.item, /*#__PURE__*/React.createElement("button", {
+    onClick: function onClick() {
+      return props.deleteItem(props.item);
     }
-  }, {
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/React.createElement("li", null, this.props.item, /*#__PURE__*/React.createElement("button", {
-        onClick: this.deleteItem
-      }, "x"));
-    }
-  }]);
+  }, "x"));
+}; // class ToDoListItems extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.deleteItem = this.deleteItem.bind(this);
+//     }
+//     deleteItem() {
+//         this.props.deleteItem(this.props.item)
+//     }
+//     render() {
+//         return (
+//             <li>
+//                 {this.props.item}
+//                 <button onClick={this.deleteItem}>x</button>
+//             </li>
+//         );
+//     }
+// }
 
-  return ToDoListItems;
-}(React.Component);
 
-var ToDoList = /*#__PURE__*/function (_React$Component4) {
-  _inherits(ToDoList, _React$Component4);
+var ToDoList = function ToDoList(props) {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", null, props.items.map(function (item, index) {
+    return /*#__PURE__*/React.createElement(ToDoListItems, {
+      deleteItem: props.deleteItem,
+      key: index,
+      item: item
+    });
+  })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("button", {
+    onClick: props.clear
+  }, "Clear Items")));
+}; // class ToDoList extends React.Component {
+//     //https://www.w3schools.com/js/js_function_bind.asp
+//     render() {
+//         return (
+//             <div>
+//                 <ul>{
+//                     this.props.items.map((item, index) =>
+//                         <ToDoListItems deleteItem={this.props.deleteItem} key={index} item={item} />)
+//                 }
+//                 </ul>
+//                 <p>
+//                     <button onClick={this.props.clear}>Clear Items</button>
+//                 </p>
+//             </div>
+//         )
+//     }
+// }
 
-  var _super4 = _createSuper(ToDoList);
 
-  function ToDoList() {
-    _classCallCheck(this, ToDoList);
+var Action = /*#__PURE__*/function (_React$Component2) {
+  _inherits(Action, _React$Component2);
 
-    return _super4.apply(this, arguments);
-  }
-
-  _createClass(ToDoList, [{
-    key: "render",
-    value: //https://www.w3schools.com/js/js_function_bind.asp
-    function render() {
-      var _this2 = this;
-
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", null, this.props.items.map(function (item, index) {
-        return /*#__PURE__*/React.createElement(ToDoListItems, {
-          deleteItem: _this2.props.deleteItem,
-          key: index,
-          item: item
-        });
-      })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("button", {
-        onClick: this.props.clear
-      }, "Clear Items")));
-    }
-  }]);
-
-  return ToDoList;
-}(React.Component);
-
-var Action = /*#__PURE__*/function (_React$Component5) {
-  _inherits(Action, _React$Component5);
-
-  var _super5 = _createSuper(Action);
+  var _super2 = _createSuper(Action);
 
   function Action(props) {
-    var _this3;
+    var _this;
 
     _classCallCheck(this, Action);
 
-    _this3 = _super5.call(this, props);
-    _this3.onFormSubmit = _this3.onFormSubmit.bind(_assertThisInitialized(_this3));
-    _this3.state = {
+    _this = _super2.call(this, props);
+    _this.onFormSubmit = _this.onFormSubmit.bind(_assertThisInitialized(_this));
+    _this.state = {
       error: ''
     };
-    return _this3;
+    return _this;
   }
 
   _createClass(Action, [{
@@ -186,27 +165,53 @@ var Action = /*#__PURE__*/function (_React$Component5) {
   return Action;
 }(React.Component);
 
-var ToDoListFull = /*#__PURE__*/function (_React$Component6) {
-  _inherits(ToDoListFull, _React$Component6);
+var ToDoListFull = /*#__PURE__*/function (_React$Component3) {
+  _inherits(ToDoListFull, _React$Component3);
 
-  var _super6 = _createSuper(ToDoListFull);
+  var _super3 = _createSuper(ToDoListFull);
 
   function ToDoListFull(props) {
-    var _this4;
+    var _this2;
 
     _classCallCheck(this, ToDoListFull);
 
-    _this4 = _super6.call(this, props);
-    _this4.clear = _this4.clear.bind(_assertThisInitialized(_this4));
-    _this4.addItem = _this4.addItem.bind(_assertThisInitialized(_this4));
-    _this4.deleteItem = _this4.deleteItem.bind(_assertThisInitialized(_this4));
-    _this4.state = {
+    _this2 = _super3.call(this, props);
+    _this2.clear = _this2.clear.bind(_assertThisInitialized(_this2));
+    _this2.addItem = _this2.addItem.bind(_assertThisInitialized(_this2));
+    _this2.deleteItem = _this2.deleteItem.bind(_assertThisInitialized(_this2));
+    _this2.state = {
       items: ['item1', 'item2']
     };
-    return _this4;
-  }
+    return _this2;
+  } // https://tr.reactjs.org/docs/react-component.html
+
 
   _createClass(ToDoListFull, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var items = JSON.parse(localStorage.getItem('items'));
+
+      if (items) {
+        this.setState({
+          items: items
+        });
+      }
+    } //storing data using localstorage
+
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (prevState.items.length !== this.state.items.length) {
+        var json = JSON.stringify(this.state.items);
+        localStorage.setItem('items', json);
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      console.log("component silindi.");
+    }
+  }, {
     key: "clear",
     value: function clear() {
       this.setState({

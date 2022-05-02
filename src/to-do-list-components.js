@@ -6,11 +6,17 @@
 //     return <h1>Hello React</h1>
 // }
 
-//Class Component
-class Header extends React.Component {
-    render() {
-        return <h1>{this.props.title}</h1>
-    }
+// //Class Component
+// class Header extends React.Component {
+//     render() {
+//         return <h1>{this.props.title}</h1>
+//     }
+// }
+
+//stateless es6 function component
+const Header = (props) => {
+    return <h1>{props.title}</h1>
+
 }
 
 //props class
@@ -27,45 +33,73 @@ class Desc extends React.Component {
 
 // }
 
-class ToDoListItems extends React.Component {
-    constructor(props) {
-        super(props);
-        this.deleteItem = this.deleteItem.bind(this);
-    }
+const ToDoListItems = (props) => {
+    return (
+        <li>
+            {props.item}
+            <button onClick={() => props.deleteItem(props.item)}>x</button>
+        </li>
+    );
 
-    deleteItem() {
-        this.props.deleteItem(this.props.item)
-    }
-
-    render() {
-        return (
-            <li>
-                {this.props.item}
-                <button onClick={this.deleteItem}>x</button>
-            </li>
-        );
-    }
 }
 
-class ToDoList extends React.Component {
-    //https://www.w3schools.com/js/js_function_bind.asp
-    render() {
-        return (
-            <div>
+// class ToDoListItems extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.deleteItem = this.deleteItem.bind(this);
+//     }
 
-                <ul>{
-                    this.props.items.map((item, index) =>
-                        <ToDoListItems deleteItem={this.props.deleteItem} key={index} item={item} />)
-                }
-                </ul>
-                <p>
-                    <button onClick={this.props.clear}>Clear Items</button>
-                </p>
-            </div>
-        )
+//     deleteItem() {
+//         this.props.deleteItem(this.props.item)
+//     }
 
-    }
+//     render() {
+//         return (
+//             <li>
+//                 {this.props.item}
+//                 <button onClick={this.deleteItem}>x</button>
+//             </li>
+//         );
+//     }
+// }
+
+const ToDoList = (props) => {
+    return (
+        <div>
+
+            <ul>{
+                props.items.map((item, index) =>
+                    <ToDoListItems deleteItem={props.deleteItem} key={index} item={item} />)
+            }
+            </ul>
+            <p>
+                <button onClick={props.clear}>Clear Items</button>
+            </p>
+        </div>
+    )
+
+
 }
+
+// class ToDoList extends React.Component {
+//     //https://www.w3schools.com/js/js_function_bind.asp
+//     render() {
+//         return (
+//             <div>
+
+//                 <ul>{
+//                     this.props.items.map((item, index) =>
+//                         <ToDoListItems deleteItem={this.props.deleteItem} key={index} item={item} />)
+//                 }
+//                 </ul>
+//                 <p>
+//                     <button onClick={this.props.clear}>Clear Items</button>
+//                 </p>
+//             </div>
+//         )
+
+//     }
+// }
 
 class Action extends React.Component {
     constructor(props) {
@@ -111,6 +145,31 @@ class ToDoListFull extends React.Component {
         this.state = {
             items: ['item1', 'item2']
         }
+    }
+
+    // https://tr.reactjs.org/docs/react-component.html
+    componentDidMount() {
+        const items = JSON.parse(localStorage.getItem('items'))
+
+        if (items) {
+            this.setState({
+                items: items
+            })
+
+        }
+    }
+
+    //storing data using localstorage
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.items.length !== this.state.items.length) {
+            const json = JSON.stringify(this.state.items);
+            localStorage.setItem('items', json);
+
+        }
+    }
+
+    componentWillUnmount() {
+        console.log("component silindi.");
     }
 
     clear() {

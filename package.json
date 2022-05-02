@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "webpack-dev": "webpack --mode development",
+    "webpack-build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel": "npx babel src/app.js --out-file=public/scripts/app.js --watch"
   },
@@ -13,6 +15,8 @@
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.16.11",
-    "@babel/preset-react": "^7.16.7"
+    "@babel/preset-react": "^7.16.7",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
   }
 }
