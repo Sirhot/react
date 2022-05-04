@@ -4,10 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "webpack-dev": "webpack --mode development",
     "webpack-build": "webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "babel": "npx babel src/app.js --out-file=public/scripts/app.js --watch"
+    "start": "webpack-dev-server --open"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +14,16 @@
     "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.2.1",
+    "sass-loader": "^9.0.3",
+    "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
   }
 }

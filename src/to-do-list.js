@@ -3,6 +3,7 @@ var root = document.querySelector(".root");
 //npx babel src/app.js --out-file=public/scripts/app.js
 //if you declared npm scripts then you can use it like npm run babel(or the that yu attended)
 //if you dont want to write it over and over again, you should add --watch to the end of it
+//"babel": "npx babel src/app.js --out-file=public/scripts/app.js --watch" 
 
 //onSubmit
 //https://hakirac.medium.com/react-ile-form-i%C5%9Fleri-nas%C4%B1l-yap%C4%B1l%C4%B1r-ca8b4ca3445a
