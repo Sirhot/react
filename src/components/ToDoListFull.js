@@ -48,9 +48,9 @@ class ToDoListFull extends React.Component {
 
     addItem(item) {
         if (!item) {
-            return 'eklemek istediğiniz elemanı girin';
+            return 'Please write a text to add it';
         } else if (this.state.items.indexOf(item) > -1) {
-            return 'aynı elemanı ekleyemezsiniz';
+            return "You can't add the same text";
         }
 
         this.setState((prevState) => {
@@ -75,11 +75,19 @@ class ToDoListFull extends React.Component {
             description: "The list that shows my schedule of today"
         }
         return (
-            <div>
-                <Header title={app.title} />
-                <Desc description={app.description} />
-                <ToDoList items={this.state.items} deleteItem={this.deleteItem} clear={this.clear} />
-                <Action addItem={this.addItem} />
+            <div className='container my-5'>
+                <div className="card">
+                    <div className="card-header">
+                        <Header title={app.title} />
+                        <Desc description={app.description} />
+                    </div>
+                    <div className="card-body">
+                        <ToDoList items={this.state.items} deleteItem={this.deleteItem} clear={this.clear} />
+                    </div>
+                    <div className="card-footer">
+                        <Action addItem={this.addItem} />
+                    </div>
+                </div>
             </div>
         )
     }

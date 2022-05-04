@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //using way without cdn
 import ToDoListFull from './components/ToDoListFull';
-import './style/style.css';
+import './style/main.scss';
 
 //React Component
 //https://www.w3schools.com/react/react_components.asp#:~:text=Components%20are%20independent%20and%20reusable,will%20concentrate%20on%20Function%20components.

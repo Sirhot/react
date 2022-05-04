@@ -20,12 +20,13 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']//css
-                //     use: ['style-loader', 'css-loader', 'sass-loader']//loader should download. npm i css-loader style-loader --save-dev . btw u should use them with related date versions or latest versions. They should be use together with their versions. 
-                //     //loaders' order is important
-                //     //download sass-loader and node-sass for scss files
-                // 
+                test: /\.scss$/,
+                // use: ['style-loader', 'css-loader']//css
+                use: ['style-loader', 'css-loader', 'sass-loader']//loader should download. npm i css-loader style-loader --save-dev . btw u should use them with related date versions or latest versions. They should be use together with their versions. 
+                //loaders' order is important
+                //download sass-loader and node-sass- sass for scss files
+                //npm install --save-dev sass
+                //https://thewebdev.info/2021/11/12/how-to-add-scss-styles-to-a-react-project/
             }
         ]
     }
